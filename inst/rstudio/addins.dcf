@@ -1,0 +1,4 @@
+Name: Activate Proxy
+Description: Configure proxy and activate proxy
+Binding: set_proxy
+Interactive: false

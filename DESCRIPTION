@@ -1,0 +1,12 @@
+Package: proxyconfig
+Version: 0.0.0.9000
+Title: Tools to configure proxy interactively
+Description: This packages contains helper functions and Rstudio Addins to help configure
+    proxy with environment variable.
+Authors@R: person("Christophe", "Dervieux", email = "christophe.dervieux@gmail.com", role = c("aut", "cre"))
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+URL: https://github.com/cderv/proxyconfig
+BugReports: https://github.com/cderv/proxyconfig/issues
