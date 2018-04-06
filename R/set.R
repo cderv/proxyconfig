@@ -8,10 +8,8 @@ set_proxy <- function(username = NULL, password = NULL, https = TRUE, .noproxy =
   if (is.null(password)) {
     mdp <- read_password("password")
   }
+  check_username(username)
 
-  if (!grepl("^[A-Z][0-9]{5}", username)) {
-    stop("NNI should be one uppercase letter followed by 5 integer", call. = F)
-  }
   .proxy_name <- "RIADES"
   proxy_url <- proxy[[.proxy_name]]$url
   proxy_port <- proxy[[.proxy_name]]$port
