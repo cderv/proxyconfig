@@ -1,7 +1,7 @@
 #' @export
 set_proxy <- function(NNI = NULL, mdp = NULL, https = T, .noproxy = c(".rte-france.com")) {
   if (is.null(NNI)) {
-    NNI <- read_Password("NNI")
+    NNI <- read_password("NNI")
     if (is.null(NNI)) {
       message("Cancelled operation")
       return(invisible(FALSE))
@@ -9,7 +9,7 @@ set_proxy <- function(NNI = NULL, mdp = NULL, https = T, .noproxy = c(".rte-fran
   }
 
   if (is.null(mdp)) {
-    mdp <- read_Password("mdp")
+    mdp <- read_password("mdp")
     if (is.null(mdp)) {
       message("Cancelled operation")
       return(invisible(FALSE))

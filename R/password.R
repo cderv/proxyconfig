@@ -1,4 +1,4 @@
-read_Password <- function(prompt) {
+read_password <- function(prompt) {
   if (requireNamespace("rstudioapi", quietly = T)) {
     pwd <- rstudioapi::askForPassword(prompt)
   } else if (exists(".rs.askForPassword")) {
