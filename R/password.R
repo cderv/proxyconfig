@@ -6,5 +6,9 @@ read_password <- function(prompt) {
   } else {
     pwd <- readline(prompt)
   }
-  return(pwd)
+  if (is.null(pwd)) {
+    message("Cancelled operation")
+    return(NULL)
+  }
+  pwd
 }

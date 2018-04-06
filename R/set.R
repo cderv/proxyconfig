@@ -1,27 +1,21 @@
 #' @export
-set_proxy <- function(NNI = NULL, mdp = NULL, https = T, .noproxy = c(".rte-france.com")) {
-  if (is.null(NNI)) {
-    NNI <- read_password("NNI")
-    if (is.null(NNI)) {
-      message("Cancelled operation")
-      return(invisible(FALSE))
-    }
+set_proxy <- function(username = NULL, password = NULL, https = TRUE, .noproxy = NULL) {
+  # ask for username
+  if (is.null(username)) {
+    NNI <- read_password("Username")
+  }
+  # ask for password
+  if (is.null(password)) {
+    mdp <- read_password("password")
   }
 
-  if (is.null(mdp)) {
-    mdp <- read_password("mdp")
-    if (is.null(mdp)) {
-      message("Cancelled operation")
-      return(invisible(FALSE))
-    }
-  }
-  if (!grepl("^[A-Z][0-9]{5}", NNI)) {
+  if (!grepl("^[A-Z][0-9]{5}", username)) {
     stop("NNI should be one uppercase letter followed by 5 integer", call. = F)
   }
   .proxy_name <- "RIADES"
   proxy_url <- proxy[[.proxy_name]]$url
   proxy_port <- proxy[[.proxy_name]]$port
-  http_proxy <- build_http_env(proxy_url, proxy_port, NNI, mdp)
+  http_proxy <- build_http_env(proxy_url, proxy_port, username, password)
   Sys.setenv(http_proxy = http_proxy)
   if (isTRUE(https)) {
     https_proxy <- http_proxy
