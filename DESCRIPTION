@@ -10,3 +10,8 @@ LazyData: true
 ByteCompile: true
 URL: https://github.com/cderv/proxyconfig
 BugReports: https://github.com/cderv/proxyconfig/issues
+RoxygenNote: 6.0.1
+Imports: 
+    stringr
+Suggests: 
+    testthat

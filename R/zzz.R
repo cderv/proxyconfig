@@ -1,4 +1,4 @@
-#' @importFrom stringr str_replace_all
+# use for printing password
 redact_string <- function(string, redact_char = "*") {
   redacted <- stringr::str_replace_all(string, ".", redact_char)
   n <- nchar(redacted)
