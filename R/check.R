@@ -9,7 +9,7 @@ is_proxy_activated <- function(verbose = F) {
   redacted_proxy_url <- function(proxy_url) {
     parsed_url <- httr::parse_url(proxy_url)
     redacted_proxy <- modifyList(
-      httr::parse_url(proxy_url),
+      parsed_url,
       list(
         username = redact_string(parsed_url$username),
         password = redact_string(parsed_url$password)
