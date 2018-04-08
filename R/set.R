@@ -1,5 +1,13 @@
 #' @export
-set_proxy <- function(username = NULL, password = NULL, https = TRUE, .noproxy = NULL) {
+set_proxy <- function(username = NULL, password = NULL,
+                      proxy = NULL,
+                      noproxy = NULL,
+                      https = TRUE) {
+
+  if (is.null(proxy) || !check_proxy(proxy)) {
+    stop("You must provide a proxy url of the form <url(:port)>",call. = FALSE)
+  }
+
   # ask for username
   if (is.null(username)) {
     NNI <- read_password("Username")
@@ -10,10 +18,8 @@ set_proxy <- function(username = NULL, password = NULL, https = TRUE, .noproxy =
   }
   check_username(username)
 
-  .proxy_name <- "RIADES"
-  proxy_url <- proxy[[.proxy_name]]$url
-  proxy_port <- proxy[[.proxy_name]]$port
-  http_proxy <- build_http_env(proxy_url, proxy_port, username, password)
+  # build proxy url for environment variable
+  http_proxy <- build_http_env(proxy$url, proxy_port$port, username, password)
   Sys.setenv(http_proxy = http_proxy)
   if (isTRUE(https)) {
     https_proxy <- http_proxy
