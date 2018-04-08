@@ -22,7 +22,8 @@ set_proxy <- function(username = NULL, password = NULL,
   check_username(username)
 
   # build proxy url for environment variable
-  http_proxy <- build_http_env(proxy$url, proxy_port$port, username, password)
+  http_proxy <- build_http_env(proxy, username, password)
+
   Sys.setenv(http_proxy = http_proxy)
   if (isTRUE(https)) {
     https_proxy <- http_proxy
@@ -34,8 +35,11 @@ set_proxy <- function(username = NULL, password = NULL,
 }
 
 
-build_http_env <- function(url, port, username, password) {
-  paste0("http://", username, ":", password, "@", url, ":", port)
+build_http_env <- function(proxy, username, password) {
+  parsed_proxy <- httr::parse_url(proxy)
+  parsed_proxy$username <- username
+  parsed_proxy$password <- password
+  httr::build_url(parsed_proxy)
 }
 
 
