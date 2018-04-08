@@ -17,6 +17,8 @@ set_proxy <- function(username = NULL, password = NULL,
   if (is.null(password)) {
     mdp <- read_password("password")
   }
+
+  # add habitility to check for username. All pass for now
   check_username(username)
 
   # build proxy url for environment variable
