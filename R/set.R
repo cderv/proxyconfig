@@ -4,8 +4,9 @@ set_proxy <- function(username = NULL, password = NULL,
                       noproxy = NULL,
                       https = TRUE) {
 
+  # check proxy is set
   if (is.null(proxy) || !check_proxy(proxy)) {
-    stop("You must provide a proxy url of the form <url(:port)>",call. = FALSE)
+    stop("You must provide a proxy url of the form <http(s)://url(:port)>",call. = FALSE)
   }
 
   # ask for username
