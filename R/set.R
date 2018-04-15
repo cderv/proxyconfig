@@ -27,9 +27,11 @@ set_proxy <- function(username = NULL, password = NULL,
   Sys.setenv(http_proxy = http_proxy)
   if (isTRUE(https)) {
     https_proxy <- http_proxy
-    Sys.setenv(HTTPS_PROXY = https_proxy)
+    Sys.setenv(https_proxy = https_proxy)
   }
-  Sys.setenv(no_proxy = paste(.noproxy, collapse = ", "))
+  if (!is.null(noproxy)) {
+    Sys.setenv(no_proxy = paste0(noproxy, collapse = ", "))
+  }
   message("Proxy configured")
   invisible(TRUE)
 }
@@ -49,6 +51,7 @@ unset_proxy <- function(verbose = F) {
     return(FALSE)
   }
   Sys.unsetenv("http_proxy")
+  Sys.unsetenv("https_proxy")
   Sys.unsetenv("no_proxy")
   if (verbose) message("Proxy unset")
   TRUE
