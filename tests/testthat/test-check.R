@@ -1,7 +1,5 @@
 context("test-check.R")
 
-dummy_proxy_url <- "http://user:pwd@proxy.info:5656"
-
 test_that("proxy environement variable are not set", {
   withr::with_envvar(
     c(http_proxy = NA, https_proxy = NA, no_proxy = NA),
