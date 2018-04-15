@@ -15,4 +15,5 @@ Imports:
     stringr,
     glue
 Suggests: 
-    testthat
+    testthat,
+    withr
