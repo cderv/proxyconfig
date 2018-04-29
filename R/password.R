@@ -1,3 +1,19 @@
+#' Ask interactively for authentification
+#'
+#' This will use if available in this order
+#' + RStudio IDE prompt
+#' + Console input
+#'
+#'
+#' @param prompt text prompt to user
+#'
+#' @return _invisibly_ the input of the user
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  pwd <- read_password("password")
+#' }
 read_password <- function(prompt) {
   if (requireNamespace("rstudioapi", quietly = T)) {
     pwd <- rstudioapi::askForPassword(prompt)
@@ -10,5 +26,5 @@ read_password <- function(prompt) {
     message("Cancelled operation")
     return(NULL)
   }
-  pwd
+  invisible(pwd)
 }
