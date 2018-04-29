@@ -11,7 +11,7 @@ set_proxy <- function(username = NULL, password = NULL,
 
   # ask for username
   if (is.null(username)) {
-    NNI <- read_password("Username")
+    username <- read_password("Username")
   }
   # ask for password
   if (is.null(password)) {
