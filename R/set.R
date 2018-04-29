@@ -39,8 +39,13 @@ set_proxy <- function(username = NULL, password = NULL,
 
 build_http_env <- function(proxy, username, password) {
   parsed_proxy <- httr::parse_url(proxy)
-  parsed_proxy$username <- username
-  parsed_proxy$password <- password
+  if (username != "") {
+    parsed_proxy$username <- username
+    parsed_proxy$password <- password
+  }
+  if (username == "" && password != "") {
+    warning("As username is empty, password is ignored")
+  }
   httr::build_url(parsed_proxy)
 }
 

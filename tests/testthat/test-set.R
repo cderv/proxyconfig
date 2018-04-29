@@ -9,6 +9,11 @@ test_that("set_proxy stop if wrong proxy", {
 test_that("build_http_env correctly", {
   expect_equal(build_http_env("http://proxy-url.com:3232", "its", "me"),
                "http://its:me@proxy-url.com:3232/")
+  expect_equal(build_http_env("http://proxy-url.com:3232", "", ""),
+               "http://proxy-url.com:3232/")
+  expect_equal(suppressWarnings(build_http_env("http://proxy-url.com:3232", "", "me")),
+               "http://proxy-url.com:3232/")
+  expect_warning(build_http_env("http://proxy-url.com:3232", "", "me"))
 })
 
 test_that("proxy is correctly unset", {
