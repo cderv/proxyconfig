@@ -1,9 +1,13 @@
 context("test-set.R")
 
 test_that("set_proxy stop if wrong proxy", {
+  unset_proxy()
   expect_error(set_proxy())
+  unset_proxy()
   expect_error(set_proxy(proxy = NULL))
+  unset_proxy()
   expect_error(set_proxy(proxy = "34#YU"))
+  unset_proxy()
 })
 
 test_that("build_http_env correctly", {
