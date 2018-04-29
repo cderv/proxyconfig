@@ -23,7 +23,7 @@ set_proxy(proxy = NULL, username = NULL, password = NULL,
 variables for proxy being set for the session. You can check them with
 \code{\link[base:Sys.getenv]{base::Sys.getenv()}}
 
-\code{FALSE} \emph{invisibly} with a message if a proxy configuration was already set. You need
+\code{FALSE} \emph{invisibly} with a warning if a proxy configuration was already set. You need
 to unset the configuration with \code{\link[=unset_proxy]{unset_proxy()}} before setting a new one.
 }
 \description{

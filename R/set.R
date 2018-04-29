@@ -27,7 +27,7 @@
 #'   variables for proxy being set for the session. You can check them with
 #'   [base::Sys.getenv()]
 #'
-#'   `FALSE` *invisibly* with a message if a proxy configuration was already set. You need
+#'   `FALSE` *invisibly* with a warning if a proxy configuration was already set. You need
 #'   to unset the configuration with [unset_proxy()] before setting a new one.
 #'
 #' @examples
