@@ -10,6 +10,15 @@ test_that("set_proxy stop if wrong proxy", {
   unset_proxy()
 })
 
+test_that("set_proxy return false with warning if already set", {
+  withr::with_envvar(
+    dummy_env_var,
+    {
+      expect_false(set_proxy(proxy = dummy_proxy_url))
+      expect_warning(set_proxy(proxy = dummy_proxy_url))
+    })
+})
+
 test_that("build_http_env correctly", {
   expect_equal(build_http_env("http://proxy-url.com:3232", "its", "me"),
                "http://its:me@proxy-url.com:3232/")
