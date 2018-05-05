@@ -31,7 +31,7 @@ is_proxy_activated <- function(verbose = FALSE) {
       )
       httr::build_url(redacted_proxy)
     }
-    http_env <- stringr::str_detect(names(set_proxy_env), stringr::regex("^HTTP", ignore_case = TRUE))
+    http_env <- grepl("^HTTP", names(set_proxy_env), ignore.case = TRUE)
     http_env_redacted <- purrr::modify_if(set_proxy_env, http_env, redacted_proxy_url)
 
     msg <- glue::glue("

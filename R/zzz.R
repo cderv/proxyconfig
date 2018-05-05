@@ -1,8 +1,8 @@
 # use for printing password
 redact_string <- function(string, redact_char = "*") {
-  redacted <- stringr::str_replace_all(string, ".", redact_char)
+  redacted <- gsub(".", redact_char, string)
   n <- nchar(redacted)
-  stringr::str_sub(redacted, 1, min(c(3,n)))
+  strtrim(redacted, min(c(3,n)))
 }
 
 # check username
