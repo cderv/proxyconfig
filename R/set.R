@@ -58,10 +58,18 @@ set_proxy <- function(proxy = NULL,
   # ask for username
   if (is.null(username)) {
     username <- read_password("Username")
+    if (is.null(username)) {
+      message("Operation cancelled")
+      invisible(FALSE)
+    }
   }
   # ask for password
   if (is.null(password)) {
     password <- read_password("password")
+    if (is.null(password)) {
+      message("Operation cancelled")
+      invisible(FALSE)
+    }
   }
 
   # add habitility to check for username. All pass for now
