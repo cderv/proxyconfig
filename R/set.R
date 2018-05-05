@@ -13,6 +13,8 @@
 #'   + `HTTP_PROXY`
 #'   + `HTTPS_PROXY`
 #'   + `NO_PROXY`
+#'   The lower case version are also set because some utilities do not understand
+#'   upper case environment variable.
 #'
 #'   This configuration is used by `curl` for internet connection and other
 #'   _method_. See _Setting Proxies_ in [base::download.file()]
@@ -45,9 +47,9 @@ set_proxy <- function(proxy = NULL,
                       noproxy = NULL,
                       https = TRUE) {
   if (is_proxy_activated(FALSE)) {
-    warning("A proxy configuration is already set.\n
-            Please check and unset with unset_proxy() before setting a new one")
-    invisible(FALSE)
+    warning("A proxy configuration is already set.\n",
+            "Please check and unset with unset_proxy() before setting a new one")
+    return(invisible(FALSE))
   }
 
   # check proxy is set
@@ -60,7 +62,7 @@ set_proxy <- function(proxy = NULL,
     username <- read_password("Username")
     if (is.null(username)) {
       message("Operation cancelled")
-      invisible(FALSE)
+      return(invisible(FALSE))
     }
   }
   # ask for password
@@ -68,7 +70,7 @@ set_proxy <- function(proxy = NULL,
     password <- read_password("password")
     if (is.null(password)) {
       message("Operation cancelled")
-      invisible(FALSE)
+      return(invisible(FALSE))
     }
   }
 
@@ -79,12 +81,15 @@ set_proxy <- function(proxy = NULL,
   http_proxy <- build_http_env(proxy, username, password)
 
   Sys.setenv(HTTP_PROXY = http_proxy)
+  Sys.setenv(http_proxy = http_proxy)
   if (isTRUE(https)) {
     https_proxy <- http_proxy
     Sys.setenv(HTTPS_PROXY = https_proxy)
+    Sys.setenv(https_proxy = https_proxy)
   }
   if (!is.null(noproxy)) {
     Sys.setenv(NO_PROXY = paste0(noproxy, collapse = ", "))
+    Sys.setenv(no_proxy = paste0(noproxy, collapse = ", "))
   }
   message("Proxy configured")
   invisible(TRUE)

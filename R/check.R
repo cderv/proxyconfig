@@ -12,12 +12,11 @@
 #'
 #' @export
 is_proxy_activated <- function(verbose = FALSE) {
-  http_proxy <- Sys.getenv("HTTP_PROXY", unset = "")
-  https_proxy <- Sys.getenv("HTTPS_PROXY", unset = "")
-  no_proxy <- Sys.getenv("NO_PROXY", unset = "")
-  all_empty <- vapply(list(http_proxy, https_proxy, no_proxy),
-                      function(x) x == "",
-                      TRUE)
+  proxy_env <- c("HTTP_PROXY", "HTTPS_PROXY", "NO_PROXY")
+  # use also http_proxy, https_proxy and no_proxy
+  proxy_env <- c(proxy_env, tolower(proxy_env))
+  set_proxy_env <- purrr::set_names(purrr::map_chr(proxy_env, Sys.getenv, unset = NA_character_), proxy_env)
+  all_empty <- purrr::map_lgl(set_proxy_env, ~ identical(.x, NA_character_))
   if (all(all_empty)) return(FALSE)
   if (verbose) {
     # redact auth if print is asked

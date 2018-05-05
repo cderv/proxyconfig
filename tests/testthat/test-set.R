@@ -22,15 +22,14 @@ test_that("build_http_env correctly", {
 
 test_that("proxy is correctly unset", {
   withr::with_envvar(
-    c(http_proxy = dummy_proxy_url, https_proxy = dummy_proxy_url, no_proxy = ".dummy.domain"),
+    dummy_env_var,
     {
       expect_true(unset_proxy(FALSE))
-      expect_identical(Sys.getenv("http_proxy", unset = "unset"), "unset")
-      expect_identical(Sys.getenv("https_proxy", unset = "unset"), "unset")
-      expect_identical(Sys.getenv("no_proxy", unset = "unset"), "unset")
+      unset_env <- purrr::map_chr(dummy_env_var, Sys.getenv, unset = "unset")
+      purrr::walk(unset_env, expect_identical, "unset")
     })
   withr::with_envvar(
-    c(http_proxy = dummy_proxy_url, https_proxy = dummy_proxy_url, no_proxy = ".dummy.domain"),
+    dummy_env_var,
     {
       expect_message(unset_proxy(TRUE), regexp = "Proxy unset", fixed = TRUE)
     }
