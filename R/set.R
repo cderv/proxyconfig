@@ -61,7 +61,7 @@ set_proxy <- function(proxy = NULL,
   }
   # ask for password
   if (is.null(password)) {
-    mdp <- read_password("password")
+    password <- read_password("password")
   }
 
   # add habitility to check for username. All pass for now
