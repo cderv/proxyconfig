@@ -31,18 +31,21 @@ is_proxy_activated <- function(verbose = FALSE) {
       )
       httr::build_url(redacted_proxy)
     }
-    msg <- glue::glue(
-      "***** Proxy Info",
-      "  HTTP_PROXY: { redacted_http }",
-      "  HTTPS_PROXY: { redacted_https }",
-      "  NO_PROXY: { no_proxy }",
-      "*****",
-      .sep = "\n",
-      no_proxy = no_proxy,
-      redacted_http = redacted_proxy_url(http_proxy),
-      redacted_https = redacted_proxy_url(https_proxy)
-    )
-    message(msg)
+    http_env <- stringr::str_detect(names(set_proxy_env), stringr::regex("^HTTP", ignore_case = TRUE))
+    http_env_redacted <- purrr::modify_if(set_proxy_env, http_env, redacted_proxy_url)
+
+    msg <- glue::glue("
+                      **** Proxy info
+                           HTTP_PROXY: {http_env_redacted$HTTP_PROXY}
+                          HTTPS_PROXY: {http_env_redacted$HTTPS_PROXY}
+                             NO_PROXY: {http_env_redacted$NO_PROXY}
+                           http_proxy: {http_env_redacted$http_proxy}
+                          https_proxy: {http_env_redacted$https_proxy}
+                             no_proxy: {http_env_redacted$no_proxy}
+                      ****
+                      ",
+                      .na = "<unset>", .sep = "\n")
+    message("***** Proxy Info\n", msg, "*****")
   }
   TRUE
 }
