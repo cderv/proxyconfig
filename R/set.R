@@ -47,13 +47,13 @@ set_proxy <- function(proxy = NULL,
                       password = NULL,
                       noproxy = NULL,
                       https = TRUE) {
+  # check proxy is set
   if (is_proxy_activated(FALSE)) {
     warning("A proxy configuration is already set.\n",
             "Please check and unset with unset_proxy() before setting a new one\n")
     return(invisible(FALSE))
   }
 
-  # check proxy is set
   if (is.null(proxy) || !check_proxy(proxy)) {
     stop("You must provide a proxy url of the form <http(s)://url(:port)>",call. = FALSE)
   }
