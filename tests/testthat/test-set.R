@@ -4,8 +4,8 @@ test_that("set_proxy stop if wrong proxy", {
   unset_proxy()
   expect_error(set_proxy())
   unset_proxy()
-  expect_error(set_proxy(proxy = NULL))
-  unset_proxy()
+  # expect_error(set_proxy(proxy = NULL))
+  # unset_proxy()
   expect_error(set_proxy(proxy = "34#YU"))
   unset_proxy()
 })
@@ -48,6 +48,17 @@ test_that("env var are set correctly", {
   unset_proxy()
 })
 
+test_that("env var are set correctly if proxy url provided as options", {
+  withr::local_options(list(`proxyconfig.proxy-url` = "http://proxy.mycompany.com:3939"))
+  unset_proxy()
+  set_proxy(
+    username = "its",
+    password = "me"
+  )
+  expect_equal(Sys.getenv("HTTP_PROXY"), "http://its:me@proxy.mycompany.com:3939/")
+  expect_equal(Sys.getenv("http_proxy"), "http://its:me@proxy.mycompany.com:3939/")
+  unset_proxy()
+})
 
 test_that("proxy is correctly unset", {
   withr::with_envvar(

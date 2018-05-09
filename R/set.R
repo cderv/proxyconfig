@@ -7,6 +7,8 @@
 #'   + any domain that proxy should ignore
 #'   + activate or not https proxy
 #'
+#'   You can set a proxy url across sessions by setting option `"proxyconfig.proxy-url"`.
+#'
 #' @section Proxy Environment Variable:
 #'
 #'   The proxy is set using environment variables
@@ -19,7 +21,9 @@
 #'   This configuration is used by `curl` for internet connection and other
 #'   _method_. See _Setting Proxies_ in [base::download.file()]
 #'
-#' @param proxy a character giving the proxy url
+#' @param proxy a character giving the proxy url. By default, it will fetch for
+#'   option `proxyconfig.proxy-rule` that can be set accross sessions in
+#'   _.Rprofile_ or _Rprofile.site_.
 #' @param username character. If `NULL`, user will be prompted
 #' @param password character. If `NULL`, user will be prompted
 #' @param noproxy character vector of domain that proxy should ignore
@@ -42,7 +46,7 @@
 #' is_proxy_activated(verbose = TRUE)
 #' }
 #' @export
-set_proxy <- function(proxy = NULL,
+set_proxy <- function(proxy = getOption("proxyconfig.proxy-url", default = NA_character_),
                       username = NULL,
                       password = NULL,
                       noproxy = NULL,
@@ -54,7 +58,7 @@ set_proxy <- function(proxy = NULL,
     return(invisible(FALSE))
   }
 
-  if (is.null(proxy) || !check_proxy(proxy)) {
+  if (is.na(proxy) || !check_proxy(proxy)) {
     stop("You must provide a proxy url of the form <http(s)://url(:port)>",call. = FALSE)
   }
 

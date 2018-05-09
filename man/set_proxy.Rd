@@ -4,11 +4,13 @@
 \alias{set_proxy}
 \title{Configure the proxy for internet connection}
 \usage{
-set_proxy(proxy = NULL, username = NULL, password = NULL,
-  noproxy = NULL, https = TRUE)
+set_proxy(proxy = getOption("proxyconfig.proxy-url", default = NA_character_),
+  username = NULL, password = NULL, noproxy = NULL, https = TRUE)
 }
 \arguments{
-\item{proxy}{a character giving the proxy url}
+\item{proxy}{a character giving the proxy url. By default, it will fetch for
+option \code{proxyconfig.proxy-rule} that can be set accross sessions in
+\emph{.Rprofile} or \emph{Rprofile.site}.}
 
 \item{username}{character. If \code{NULL}, user will be prompted}
 
@@ -35,6 +37,8 @@ environment variable
 \item any domain that proxy should ignore
 \item activate or not https proxy
 }
+
+You can set a proxy url across sessions by setting option \code{"proxyconfig.proxy-url"}.
 }
 \section{Proxy Environment Variable}{
 
