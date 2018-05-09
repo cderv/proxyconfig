@@ -53,11 +53,12 @@ This configuration is used by \code{curl} for internet connection and other
 }
 
 \examples{
+\dontrun{
  set_proxy(proxy = "http://10.132.23.444:3232",
            username = "",
            password = "",
            noproxy = ".mycompany.com",
            https = TRUE)
 is_proxy_activated(verbose = TRUE)
-
+}
 }

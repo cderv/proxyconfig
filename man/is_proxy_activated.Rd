@@ -17,6 +17,7 @@ is redacted for printing}
 This checks for any set environment variable relevant to proxy
 }
 \examples{
+\dontrun{
   is_proxy_activated(verbose = TRUE)
-
+}
 }

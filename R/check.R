@@ -8,8 +8,9 @@
 #' @return `TRUE` is a proxy is configured. `FALSE` otherwise.
 #'
 #' @examples
+#' \dontrun{
 #'   is_proxy_activated(verbose = TRUE)
-#'
+#' }
 #' @export
 is_proxy_activated <- function(verbose = FALSE) {
   proxy_env <- c("HTTP_PROXY", "HTTPS_PROXY", "NO_PROXY")

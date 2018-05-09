@@ -18,6 +18,7 @@ This fonction is a helper to unset all configuration of proxy for the current
 session.
 }
 \examples{
+\dontrun{
  set_proxy(proxy = "http://10.132.23.444:3232",
            username = "",
            password = "",
@@ -26,4 +27,5 @@ session.
  is_proxy_activated(verbose = TRUE)
  unset_proxy(verbose = TRUE)
  is_proxy_activated(verbose = TRUE)
+ }
 }

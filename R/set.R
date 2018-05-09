@@ -33,13 +33,14 @@
 #'   to unset the configuration with [unset_proxy()] before setting a new one.
 #'
 #' @examples
+#' \dontrun{
 #'  set_proxy(proxy = "http://10.132.23.444:3232",
 #'            username = "",
 #'            password = "",
 #'            noproxy = ".mycompany.com",
 #'            https = TRUE)
 #' is_proxy_activated(verbose = TRUE)
-#'
+#' }
 #' @export
 set_proxy <- function(proxy = NULL,
                       username = NULL,
@@ -132,6 +133,7 @@ build_http_env <- function(proxy, username, password) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #'  set_proxy(proxy = "http://10.132.23.444:3232",
 #'            username = "",
 #'            password = "",
@@ -140,6 +142,7 @@ build_http_env <- function(proxy, username, password) {
 #'  is_proxy_activated(verbose = TRUE)
 #'  unset_proxy(verbose = TRUE)
 #'  is_proxy_activated(verbose = TRUE)
+#'  }
 unset_proxy <- function(verbose = FALSE) {
   if (!is_proxy_activated(FALSE)) {
     if (verbose) message("Proxy is not activated. Nothing to unset.")
