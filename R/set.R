@@ -105,8 +105,6 @@ set_proxy <- function(proxy = NULL,
 #' @param password character
 #'
 #' @return proxy url with username and password
-#' @export
-#'
 #' @examples
 #'   build_http_env("http://proxy-url.com:3232", "its", "me")
 build_http_env <- function(proxy, username, password) {
@@ -142,7 +140,6 @@ build_http_env <- function(proxy, username, password) {
 #'  is_proxy_activated(verbose = TRUE)
 #'  unset_proxy(verbose = TRUE)
 #'  is_proxy_activated(verbose = TRUE)
-
 unset_proxy <- function(verbose = FALSE) {
   if (!is_proxy_activated(FALSE)) {
     if (verbose) message("Proxy is not activated. Nothing to unset.")

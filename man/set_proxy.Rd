@@ -44,6 +44,8 @@ The proxy is set using environment variables
 \item \code{HTTP_PROXY}
 \item \code{HTTPS_PROXY}
 \item \code{NO_PROXY}
+The lower case version are also set because some utilities do not understand
+upper case environment variable.
 }
 
 This configuration is used by \code{curl} for internet connection and other

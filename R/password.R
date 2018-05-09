@@ -4,12 +4,9 @@
 #' + RStudio IDE prompt
 #' + Console input
 #'
-#'
 #' @param prompt text prompt to user
 #'
 #' @return _invisibly_ the input of the user
-#' @export
-#'
 #' @examples
 #' if (interactive()) {
 #'  pwd <- read_password("password")
