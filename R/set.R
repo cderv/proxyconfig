@@ -48,7 +48,7 @@ set_proxy <- function(proxy = NULL,
                       https = TRUE) {
   if (is_proxy_activated(FALSE)) {
     warning("A proxy configuration is already set.\n",
-            "Please check and unset with unset_proxy() before setting a new one")
+            "Please check and unset with unset_proxy() before setting a new one\n")
     return(invisible(FALSE))
   }
 
@@ -116,7 +116,7 @@ build_http_env <- function(proxy, username, password) {
     parsed_proxy$password <- password
   }
   if (username == "" && password != "") {
-    warning("As username is empty, password is ignored")
+    warning("As username is empty, password is ignored\n")
   }
   httr::build_url(parsed_proxy)
 }
