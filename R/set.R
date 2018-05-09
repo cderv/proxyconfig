@@ -7,7 +7,7 @@
 #'   + any domain that proxy should ignore
 #'   + activate or not https proxy
 #'
-#'   You can set a proxy url across sessions by setting option `"proxyconfig.proxy-url"`.
+#'   You can set a proxy url across sessions by setting option `"proxyconfig.proxy"`.
 #'
 #' @section Proxy Environment Variable:
 #'
@@ -22,7 +22,7 @@
 #'   _method_. See _Setting Proxies_ in [base::download.file()]
 #'
 #' @param proxy a character giving the proxy url. By default, it will fetch for
-#'   option `proxyconfig.proxy-rule` that can be set accross sessions in
+#'   option `proxyconfig.proxy` that can be set accross sessions in
 #'   _.Rprofile_ or _Rprofile.site_.
 #' @param username character. If `NULL`, user will be prompted
 #' @param password character. If `NULL`, user will be prompted
@@ -46,7 +46,7 @@
 #' is_proxy_activated(verbose = TRUE)
 #' }
 #' @export
-set_proxy <- function(proxy = getOption("proxyconfig.proxy-url", default = NA_character_),
+set_proxy <- function(proxy = getOption("proxyconfig.proxy", default = NA_character_),
                       username = NULL,
                       password = NULL,
                       noproxy = NULL,

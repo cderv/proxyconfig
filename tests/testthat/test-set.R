@@ -49,7 +49,7 @@ test_that("env var are set correctly", {
 })
 
 test_that("env var are set correctly if proxy url provided as options", {
-  withr::local_options(list(`proxyconfig.proxy-url` = "http://proxy.mycompany.com:3939"))
+  withr::local_options(list(`proxyconfig.proxy` = "http://proxy.mycompany.com:3939"))
   unset_proxy()
   set_proxy(
     username = "its",
