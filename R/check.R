@@ -45,7 +45,7 @@ is_proxy_activated <- function(verbose = FALSE) {
                       ****
                       ",
                       .na = "<unset>", .sep = "\n")
-    message("***** Proxy Info\n", msg, "*****")
+    message(msg)
   }
   TRUE
 }
