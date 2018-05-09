@@ -70,17 +70,29 @@ source("https://install-github.me/cderv/proxyconfig")
 
 ### How to set the proxy
 
-Given a proxy url, you can set the proxy interactively using
-`set_proxy`. Proxy url must be of the form *scheme://hostname\[:port\]*.
+Given a proxy url, you can set the proxy interactively using `set_proxy`
+using `proxy` argument. Proxy url must be of the form
+*scheme://hostname\[:port\]*.
 
 ``` r
 proxyconfig::set_proxy(proxy = "http://proxy.mycompany.com:3939")
 ```
 
-By default, this will prompt the user for authentification ( *username*
-and *password* ). You can pass them in `set_proxy` argument too to use
-non-interactively. **This is not advice to pass them in clear in a
-script** - this is what the interactive mode with dialog box aims to
+You can also use `options(proxyconfig.proxy =
+"http://proxy.mycompany.com:3939")` so that it knows which url to use as
+default. You can use `usethis::edit_r_profile()` to open the user
+*.Rprofile* and add the option.
+
+Then when in *.Rprofile*, you can call directly
+
+``` r
+proxyconfig::set_proxy()
+```
+
+By default if username and password not provided, this will prompt the
+user for authentification. You can pass them in `set_proxy` argument too
+to use non-interactively. **This is not advice to pass them in clear in
+a script** - this is what the interactive mode with dialog box aims to
 prevent.
 
 If you don’t have any authentification on your proxy, use empty values
@@ -144,8 +156,8 @@ If a proxy is already set, `set_proxy` will issue a warning (and return
 false invisibly)
 
 ``` r
-(set_proxy(proxy =  "https://newproxy.company.com"))
-#> Warning in set_proxy(proxy = "https://newproxy.company.com"): A proxy configuration is already set.
+(proxyconfig::set_proxy(proxy =  "https://newproxy.company.com"))
+#> Warning in proxyconfig::set_proxy(proxy = "https://newproxy.company.com"): A proxy configuration is already set.
 #> Please check and unset with unset_proxy() before setting a new one
 #> [1] FALSE
 ```
@@ -153,11 +165,11 @@ false invisibly)
 You can unset a proxy configuration with `unset_proxy()`
 
 ``` r
-unset_proxy(verbose = TRUE)
+proxyconfig::unset_proxy(verbose = TRUE)
 #> Proxy unset
 #> [1] TRUE
 # proxy is correctly deactivated
-is_proxy_activated(TRUE)
+proxyconfig::is_proxy_activated(TRUE)
 #> [1] FALSE
 ```
 
