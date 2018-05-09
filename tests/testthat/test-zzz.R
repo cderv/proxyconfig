@@ -1,10 +1,5 @@
 context("test-zzz.R")
 
-test_that("redact string and keep maximum 3 character", {
-  expect_equal(redact_string("test"), "***")
-  expect_equal(redact_string("test", redact_char = "#"), "###")
-})
-
 test_that("check_username is TRUE is no regex provided", {
   random <- c(letters, LETTERS, 1:9)
   username <- paste0(sample(random, sample.int(10), replace = TRUE), collapse = "")

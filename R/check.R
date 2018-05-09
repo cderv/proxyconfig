@@ -25,8 +25,8 @@ is_proxy_activated <- function(verbose = FALSE) {
       redacted_proxy <- modifyList(
         parsed_url,
         list(
-          username = redact_string(parsed_url$username),
-          password = redact_string(parsed_url$password)
+          username = "***",
+          password = "***"
         )
       )
       httr::build_url(redacted_proxy)
