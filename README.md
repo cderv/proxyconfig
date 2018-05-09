@@ -3,6 +3,14 @@
 
 # proxyconfig
 
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/proxyconfig)](https://cran.r-project.org/package=proxyconfig)
+[![Travis build
+status](https://travis-ci.org/cderv/proxyconfig.svg?branch=master)](https://travis-ci.org/cderv/proxyconfig)
+[![Coverage
+status](https://codecov.io/gh/cderv/proxyconfig/branch/master/graph/badge.svg)](https://codecov.io/github/cderv/proxyconfig?branch=master)
+
 The goal of proxyconfig is to help setting the proxy interactively.
 
 ## About proxy configuration

@@ -16,5 +16,6 @@ Imports:
     purrr
 Suggests: 
     testthat,
-    withr
+    withr,
+    covr
 Roxygen: list(markdown = TRUE)
