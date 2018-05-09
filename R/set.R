@@ -151,6 +151,9 @@ unset_proxy <- function(verbose = FALSE) {
   Sys.unsetenv("HTTP_PROXY")
   Sys.unsetenv("HTTPS_PROXY")
   Sys.unsetenv("NO_PROXY")
+  Sys.unsetenv("http_proxy")
+  Sys.unsetenv("https_proxy")
+  Sys.unsetenv("no_proxy")
   if (verbose) message("Proxy unset")
   TRUE
 }
