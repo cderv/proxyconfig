@@ -20,3 +20,8 @@ test_that("proxy environment variable are set", {
     }
   )
 })
+
+test_that("hide username and password when printing", {
+ expect_identical(redacted_proxy_url("https://its:me@user.com:3434/"), "https://***:***@user.com:3434/")
+ expect_identical(redacted_proxy_url("https://user.com:3434/"), "https://user.com:3434/")
+})

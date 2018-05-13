@@ -20,21 +20,10 @@ is_proxy_activated <- function(verbose = FALSE) {
   all_empty <- purrr::map_lgl(set_proxy_env, ~ identical(.x, NA_character_))
   if (all(all_empty)) return(FALSE)
   if (verbose) {
-    # redact auth if print is asked
-    redacted_proxy_url <- function(proxy_url) {
-      parsed_url <- httr::parse_url(proxy_url)
-      redacted_proxy <- modifyList(
-        parsed_url,
-        list(
-          username = "***",
-          password = "***"
-        )
-      )
-      httr::build_url(redacted_proxy)
-    }
+    # filter http env proxy from no_proxy
     http_env <- grepl("^HTTP", names(set_proxy_env), ignore.case = TRUE)
+    # hide username and password
     http_env_redacted <- purrr::modify_if(set_proxy_env, http_env, redacted_proxy_url)
-
     msg <- glue::glue("
                       **** Proxy info
                            HTTP_PROXY: {http_env_redacted$HTTP_PROXY}
@@ -49,4 +38,12 @@ is_proxy_activated <- function(verbose = FALSE) {
     message(msg)
   }
   TRUE
+}
+
+# when printing proxy, redact auth with three star
+redacted_proxy_url <- function(proxy_url) {
+  parsed_url <- httr::parse_url(proxy_url)
+  parsed_url$username <- if (!is.null(parsed_url$username)) "***"
+  parsed_url$password <- if (!is.null(parsed_url$password)) "***"
+  httr::build_url(parsed_url)
 }
