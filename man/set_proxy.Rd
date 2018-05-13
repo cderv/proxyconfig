@@ -53,7 +53,7 @@ upper case environment variable.
 }
 
 This configuration is used by \code{curl} for internet connection and other
-\emph{method}. See \emph{Setting Proxies} in \code{\link[base:download.file]{base::download.file()}}
+\emph{method}. See \emph{Setting Proxies} in \code{\link[utils:download.file]{utils::download.file()}}
 }
 
 \examples{

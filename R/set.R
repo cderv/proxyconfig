@@ -19,7 +19,7 @@
 #'   upper case environment variable.
 #'
 #'   This configuration is used by `curl` for internet connection and other
-#'   _method_. See _Setting Proxies_ in [base::download.file()]
+#'   _method_. See _Setting Proxies_ in [utils::download.file()]
 #'
 #' @param proxy a character giving the proxy url. By default, it will fetch for
 #'   option `proxyconfig.proxy` that can be set accross sessions in
@@ -110,8 +110,11 @@ set_proxy <- function(proxy = getOption("proxyconfig.proxy", default = NA_charac
 #' @param password character
 #'
 #' @return proxy url with username and password
+#' @keywords internal
 #' @examples
+#' \dontrun{
 #'   build_http_env("http://proxy-url.com:3232", "its", "me")
+#' }
 build_http_env <- function(proxy, username, password) {
   parsed_proxy <- httr::parse_url(proxy)
   if (username != "") {

@@ -20,5 +20,8 @@ proxy url with username and password
 Build proxy url as \code{http://username:password@proxy-url.com:port}
 }
 \examples{
+\dontrun{
   build_http_env("http://proxy-url.com:3232", "its", "me")
 }
+}
+\keyword{internal}

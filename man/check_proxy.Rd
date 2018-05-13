@@ -16,5 +16,8 @@ check_proxy(proxy)
 Checked against perl regex \code{"^http(s)?://[a-zA-Z0-9\\.-]+(:[0-9]+)?$"}
 }
 \examples{
+\dontrun{
 check_proxy("http://10.132.23.444:3232")
 }
+}
+\keyword{internal}
