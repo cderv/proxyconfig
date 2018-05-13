@@ -14,7 +14,7 @@ test_that("set_proxy return false with warning if already set", {
   withr::with_envvar(
     dummy_env_var,
     {
-      expect_false(set_proxy(proxy = dummy_proxy_url))
+      suppressWarnings(expect_false(set_proxy(proxy = dummy_proxy_url)))
       expect_warning(set_proxy(proxy = dummy_proxy_url))
     })
 })
