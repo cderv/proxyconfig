@@ -7,7 +7,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/proxyconfig)](https://cran.r-project.org/package=proxyconfig)
 [![Travis build
-status](https://travis-ci.org/cderv/proxyconfig.svg?branch=master)](https://travis-ci.org/cderv/proxyconfig)
+status](https://travis-ci.com/cderv/proxyconfig.svg?branch=master)](https://travis-ci.com/cderv/proxyconfig)
 [![Coverage
 status](https://codecov.io/gh/cderv/proxyconfig/branch/master/graph/badge.svg)](https://codecov.io/github/cderv/proxyconfig?branch=master)
 [![License:
