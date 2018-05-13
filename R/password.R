@@ -12,7 +12,7 @@
 #'  pwd <- read_password("password")
 #' }
 read_password <- function(prompt) {
-  if (requireNamespace("rstudioapi", quietly = T)) {
+  if (requireNamespace("rstudioapi", quietly = TRUE)) {
     pwd <- rstudioapi::askForPassword(prompt)
   } else if (exists(".rs.askForPassword")) {
     pwd <- .rs.askForPassword(prompt)

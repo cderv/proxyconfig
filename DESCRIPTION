@@ -17,5 +17,6 @@ Imports:
 Suggests: 
     testthat,
     withr,
-    covr
+    covr,
+    rstudioapi
 Roxygen: list(markdown = TRUE)
