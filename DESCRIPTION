@@ -2,7 +2,7 @@ Package: proxyconfig
 Version: 0.0.0.9000
 Title: Tools to Configure Proxy Interactively
 Description: Helpers functions and Rstudio Addins to help configure
-    proxy more easily
+    proxy more easily.
 Authors@R: person("Christophe", "Dervieux", email = "christophe.dervieux@gmail.com", role = c("aut", "cre"))
 License: MIT + file LICENSE
 Encoding: UTF-8
