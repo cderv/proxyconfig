@@ -5,8 +5,11 @@
 #' @param proxy a character
 #'
 #' @return `TRUE` if proxy is valide
+#' @keywords internal
 #' @examples
+#' \dontrun{
 #' check_proxy("http://10.132.23.444:3232")
+#' }
 check_proxy <- function(proxy) {
   if (length(proxy) == 0) return(FALSE)
   # check for <url(:port)>
