@@ -16,7 +16,7 @@ is_proxy_activated <- function(verbose = FALSE) {
   proxy_env <- c("HTTP_PROXY", "HTTPS_PROXY", "NO_PROXY")
   # use also http_proxy, https_proxy and no_proxy
   proxy_env <- c(proxy_env, tolower(proxy_env))
-  set_proxy_env <- purrr::set_names(purrr::map_chr(proxy_env, Sys.getenv, unset = NA_character_), proxy_env)
+  set_proxy_env <- purrr::set_names(purrr::map(proxy_env, Sys.getenv, unset = NA_character_), proxy_env)
   all_empty <- purrr::map_lgl(set_proxy_env, ~ identical(.x, NA_character_))
   if (all(all_empty)) return(FALSE)
   if (verbose) {
@@ -26,14 +26,15 @@ is_proxy_activated <- function(verbose = FALSE) {
     http_env_redacted <- purrr::modify_if(set_proxy_env, http_env, redacted_proxy_url)
     msg <- glue::glue("
                       **** Proxy info
-                           HTTP_PROXY: {http_env_redacted$HTTP_PROXY}
-                          HTTPS_PROXY: {http_env_redacted$HTTPS_PROXY}
-                             NO_PROXY: {http_env_redacted$NO_PROXY}
-                           http_proxy: {http_env_redacted$http_proxy}
-                          https_proxy: {http_env_redacted$https_proxy}
-                             no_proxy: {http_env_redacted$no_proxy}
+                           HTTP_PROXY: {HTTP_PROXY}
+                          HTTPS_PROXY: {HTTPS_PROXY}
+                             NO_PROXY: {NO_PROXY}
+                           http_proxy: {http_proxy}
+                          https_proxy: {https_proxy}
+                             no_proxy: {no_proxy}
                       ****
                       ",
+                      .envir = http_env_redacted,
                       .na = "<unset>", .sep = "\n")
     message(msg)
   }
