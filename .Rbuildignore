@@ -6,3 +6,4 @@
 ^README\.html$
 ^codecov\.yml$
 ^proxyconfig\.yml$
+^azure-pipelines\.yml$

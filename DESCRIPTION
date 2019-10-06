@@ -1,16 +1,16 @@
 Package: proxyconfig
-Version: 0.0.0.9002
 Title: Tools to Configure Proxy Interactively
-Description: Helpers functions and Rstudio Addins to help configure
-    proxy more easily.
-Authors@R: person("Christophe", "Dervieux", email = "christophe.dervieux@gmail.com", role = c("aut", "cre"))
+Version: 0.0.0.9002
+Authors@R: 
+    person(given = "Christophe",
+           family = "Dervieux",
+           role = c("aut", "cre"),
+           email = "christophe.dervieux@gmail.com")
+Description: Helpers functions and Rstudio Addins to help
+    configure proxy more easily.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-ByteCompile: true
 URL: https://github.com/cderv/proxyconfig
 BugReports: https://github.com/cderv/proxyconfig/issues
-RoxygenNote: 6.0.1
 Imports: 
     glue,
     purrr,
@@ -19,5 +19,10 @@ Suggests:
     testthat,
     withr,
     covr,
-    rstudioapi
+    rstudioapi,
+    xml2
+ByteCompile: true
+Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.0.1

@@ -3,25 +3,35 @@
 
 # proxyconfig
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: start -->
+
+[![Azure pipelines build
+status](https://img.shields.io/azure-devops/build/cderv/proxyconfig/2)](https://dev.azure.com/cderv/proxyconfig/_build/latest?definitionId=1&branchName=master)
+[![Azure pipelines test
+status](https://img.shields.io/azure-devops/tests/cderv/proxyconfig/2?color=brightgreen&compact_message)](https://dev.azure.com/cderv/proxyconfig/_build/latest?definitionId=1&branchName=master)
+[![Azure pipelines coverage
+status](https://img.shields.io/azure-devops/coverage/cderv/proxyconfig/2)](https://dev.azure.com/cderv/proxyconfig/_build/latest?definitionId=1&branchName=master)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/proxyconfig)](https://cran.r-project.org/package=proxyconfig)
-[![Travis build
-status](https://travis-ci.com/cderv/proxyconfig.svg?branch=master)](https://travis-ci.com/cderv/proxyconfig)
-[![Coverage
-status](https://codecov.io/gh/cderv/proxyconfig/branch/master/graph/badge.svg)](https://codecov.io/github/cderv/proxyconfig?branch=master)
+status](https://www.r-pkg.org/badges/version/proxyconfig)](https://CRAN.R-project.org/package=proxyconfig)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+[![Travis build
+status](https://travis-ci.com/cderv/proxyconfig.svg?branch=master)](https://travis-ci.com/cderv/proxyconfig)
+[![Codecov test
+coverage](https://codecov.io/gh/cderv/proxyconfig/branch/master/graph/badge.svg)](https://codecov.io/gh/cderv/proxyconfig?branch=master)
+<!-- badges: end -->
 
 The goal of proxyconfig is to help setting the proxy interactively.
 
 ## About proxy configuration
 
-### Why you would need to configure a proxy ?
+### Why would you need to configure a proxy ?
 
-In professional environment, there is often a proxy you need to pass
+In a corporate environment, there is often a proxy you need to pass
 through to escape your company network. When behind this firewall of
-your company, you need to first tell R that is needs to pass the proxy
+your company, you need to first tell R that it needs to pass the proxy
 before trying to reach the url and not to use it when the url you want
 to access are inside the same network.
 
@@ -29,31 +39,32 @@ to access are inside the same network.
 
 For example, behind a company proxy,
 
-  - `install.package` won’t be able to reach the cran mirror that is
-    outside.
+  - `install.package` won’t be able to reach a cran mirror that is
+    outside like `https://https://cloud.r-project.org/`
   - `download.file` won’t be able to get a file from a url
-  - `httr::GET`, `curl::curl`
+  - `httr::GET`, `curl::curl` won’t be able to be used for web url.
 
-The first too are base R feature and have a method argument that you can
-use. Different method can have different settings. Most used is
-*libcurl* that is also used by httr and curl :package:.
+The first two are R base features and have a `method` argument that you
+can use to help configure correctly. Different methods can have
+different settings. The most used is *libcurl* that is also used by
+`httr` and `curl` :package:.
 
 ### Some words about proxy configuration in R
 
 Sometimes, proxy is automatically picked up by R. It is the case on
-windows where R use the *wininet* method by default, for which the
-‘Internet Options’, used by Internet Explorer, are used for proxy
-configuration.  
-On other system, proxy must be explicity configured.
+windows where R uses the *wininet* method by default, for which the
+‘Internet Options’, from Internet Explorer or Edge, are used for proxy
+configuration. On other system, proxy must often be explicity
+configured.
 
-You’ll find information on *Setting Proxies* in R in the
+You’ll find information about *Setting Proxies* in R in the
 `utils::download.file()` help page: `help("download.file", package =
 "utils")` or `?download.file`.
 
 ## Installation
 
-Currently, this <f0>\<U+009F\>\<U+0093\>\<U+00A6\> is only available on
-[GitHub](https://github.com/) in development version :
+Currently, this package is only available on Github in development
+version :
 
 ``` r
 # install.packages("devtools")
@@ -95,7 +106,7 @@ to use non-interactively. **This is not advice to pass them in clear in
 a script** - this is what the interactive mode with dialog box aims to
 prevent.
 
-If you don’t have any authentification on your proxy, use empty values
+If you don’t have any authentification for your proxy, use empty values
 explicitly.
 
 ``` r
@@ -104,20 +115,18 @@ proxyconfig::set_proxy(proxy = "http://proxy.mycompany.com:3939", username = "",
 
 To prevent the proxy to be used for url on internal network domain, use
 `noproxy` argument. (empty by default). This useful for a github
-entreprise server or an internal cran repos for examples, respectively
-on `https://github.mycompany.com` and `https://cran.mycompany.com`. Both
+entreprise server or an internal cran repos for example, respectively on
+`https://github.mycompany.com` and `https://cran.mycompany.com`. Both
 are on the same domain - `noproxy` is configured here to look for url on
 domain mycompany.com without exiting the internal pany network through
-the
-proxy.
+the proxy.
 
 ``` r
 proxyconfig::set_proxy(proxy = "http://proxy.mycompany.com:3939", noproxy = ".mycompany.com")
 ```
 
 If several domains (or IP addresses) are necessary, they will be
-concatenated
-properly.
+concatenated properly.
 
 ``` r
 proxyconfig::set_proxy(proxy = "http://proxy.mycompany.com:3939", noproxy = c(".mycompany.com", "163.104.50.180"))
@@ -131,7 +140,6 @@ session. You can verify if a proxy is currently configured with
 
 ``` r
 proxyconfig::is_proxy_activated()
-#> [1] TRUE
 ```
 
 You can have more information using `verbose = TRUE`. (Note that
@@ -139,15 +147,6 @@ authentification is hidden when printed)
 
 ``` r
 proxyconfig::is_proxy_activated(TRUE)
-#> **** Proxy info
-#>      HTTP_PROXY: http://***:***@proxy.mycompany.com:3939/
-#>     HTTPS_PROXY: http://***:***@proxy.mycompany.com:3939/
-#>        NO_PROXY: .mycompany.com, 163.104.50.180
-#>      http_proxy: http://***:***@proxy.mycompany.com:3939/
-#>     https_proxy: http://***:***@proxy.mycompany.com:3939/
-#>        no_proxy: .mycompany.com, 163.104.50.180
-#> ****
-#> [1] TRUE
 ```
 
 ### What if a proxy is already set ?
@@ -157,20 +156,14 @@ false invisibly)
 
 ``` r
 (proxyconfig::set_proxy(proxy =  "https://newproxy.company.com"))
-#> Warning in proxyconfig::set_proxy(proxy = "https://newproxy.company.com"): A proxy configuration is already set.
-#> Please check and unset with unset_proxy() before setting a new one
-#> [1] FALSE
 ```
 
 You can unset a proxy configuration with `unset_proxy()`
 
 ``` r
 proxyconfig::unset_proxy(verbose = TRUE)
-#> Proxy unset
-#> [1] TRUE
 # proxy is correctly deactivated
 proxyconfig::is_proxy_activated(TRUE)
-#> [1] FALSE
 ```
 
 # TODO
@@ -178,11 +171,11 @@ proxyconfig::is_proxy_activated(TRUE)
 This is a very new package that works for me. Among the ideas I have for
 improvement
 
-  - \[ \] Use an option mechanism to make the proxy url persistent
-    across sessions
-  - \[ \] Use [keyring](https://github.com/r-lib/keyring) to store and
+  - [ ] Use an option mechanism to make the proxy url persistent across
+    sessions
+  - [ ] Use [keyring](https://github.com/r-lib/keyring) to store and
     retrieve auth accross session
-  - \[ \] Make a templating system to use proxyconfig in an internal
+  - [ ] Make a templating system to use proxyconfig in an internal
     package. Inspiration `ghentr` and `pkgconfig`
-  - \[ \] Improve console output with `cli`
-  - \[ \] Create an add-on for better interactation (and keybinding)
+  - [ ] Improve console output with `cli`
+  - [ ] Create an add-on for better interactation (and keybinding)
