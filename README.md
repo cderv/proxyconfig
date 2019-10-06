@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Azure pipelines build
-status](https://img.shields.io/azure-devops/build/cderv/4dae08f7-f565-42a4-9f15-198bb572a0f9/1)](https://dev.azure.com/cderv/proxyconfig/_build/latest?definitionId=1&branchName=master)
+status](https://img.shields.io/azure-devops/build/cderv/proxyconfig/1)](https://dev.azure.com/cderv/proxyconfig/_build/latest?definitionId=1&branchName=master)
 [![Azure pipelines test
 status](https://img.shields.io/azure-devops/tests/cderv/proxyconfig/1?color=brightgreen&compact_message)](https://dev.azure.com/cderv/proxyconfig/_build/latest?definitionId=1&branchName=master)
 [![Azure pipelines coverage
